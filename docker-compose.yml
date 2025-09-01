@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  dcs-postgres:
+    image: postgres:17.0-alpine
+    container_name: dcs-postgres
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_PASSWORD: m256039l
+      POSTGRES_USER: postgres
+      POSTGRES_DB: lucystarDb
+    ports:
+      - "5432:5432"
+    networks:
+      - physio_network  
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+networks: 
+    lucystar_network:
+        driver: bridge
