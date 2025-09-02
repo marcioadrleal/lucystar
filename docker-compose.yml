@@ -19,7 +19,7 @@ services:
     networks:
       - lucystar_network  
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ../../data/postgres:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
 networks: 
     lucystar_network:
