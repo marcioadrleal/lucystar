@@ -30,6 +30,9 @@ public class SystemAdminParamEntity implements Serializable {
 	@Column(name = "secret_key", length = 40, nullable = false)
 	private String secretKey;
 
+	@Column(name = "local_secret_key", length = 40, nullable = false)
+	private String localSecretKey;
+
 	@Column(name = "created_date", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
@@ -45,6 +48,17 @@ public class SystemAdminParamEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", length = 10, nullable = false)
 	private StatuEnum status;
+
+	@Column(name = "email", length = 40, nullable = false)
+	private String email;
+
+	public String getLocalSecretKey() {
+		return localSecretKey;
+	}
+
+	public void setLocalSecretKey(String localSecretKey) {
+		this.localSecretKey = localSecretKey;
+	}
 
 	public String getId() {
 		return id;
@@ -100,6 +114,14 @@ public class SystemAdminParamEntity implements Serializable {
 
 	public void setSecretKey(String secretKey) {
 		this.secretKey = secretKey;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
