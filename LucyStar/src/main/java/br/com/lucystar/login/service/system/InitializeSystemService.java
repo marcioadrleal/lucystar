@@ -1,4 +1,4 @@
-package br.com.lucystar.login.service;
+package br.com.lucystar.login.service.system;
 
 import java.util.Date;
 import java.util.Optional;
@@ -7,13 +7,13 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.lucystar.login.dto.InitializeSystemDTO;
-import br.com.lucystar.login.entity.SystemAdminParamEntity;
+import br.com.lucystar.login.dto.system.InitializeSystemDTO;
+import br.com.lucystar.login.entity.system.SystemAdminParamEntity;
 import br.com.lucystar.login.enums.StatuEnum;
 import br.com.lucystar.login.exceptions.NotFoundException;
 import br.com.lucystar.login.exceptions.ResetSystemException;
 import br.com.lucystar.login.exceptions.SystemAdminException;
-import br.com.lucystar.login.repository.SystemAdminParamRepository;
+import br.com.lucystar.login.repository.system.SystemAdminParamRepository;
 import br.com.lucystar.login.utils.MessagesException;
 import br.com.lucystar.login.utils.Util;
 import jakarta.transaction.Transactional;

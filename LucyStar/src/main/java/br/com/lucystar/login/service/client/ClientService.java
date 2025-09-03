@@ -1,4 +1,4 @@
-package br.com.lucystar.login.service;
+package br.com.lucystar.login.service.client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.lucystar.login.dto.ClientAddDTO;
-import br.com.lucystar.login.dto.ClientDto;
-import br.com.lucystar.login.entity.ClientEntity;
-import br.com.lucystar.login.entity.SystemAdminParamEntity;
+import br.com.lucystar.login.dto.client.ClientAddDTO;
+import br.com.lucystar.login.dto.client.ClientDto;
+import br.com.lucystar.login.entity.client.ClientEntity;
+import br.com.lucystar.login.entity.system.SystemAdminParamEntity;
 import br.com.lucystar.login.exceptions.DeleteException;
 import br.com.lucystar.login.exceptions.NotFoundException;
-import br.com.lucystar.login.repository.ClientRepository;
+import br.com.lucystar.login.repository.client.ClientRepository;
+import br.com.lucystar.login.service.system.InitializeSystemService;
 import br.com.lucystar.login.utils.MessagesException;
 import br.com.lucystar.login.utils.Util;
 import jakarta.transaction.Transactional;

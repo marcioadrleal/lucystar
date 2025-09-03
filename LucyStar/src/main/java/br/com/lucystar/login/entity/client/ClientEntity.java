@@ -1,7 +1,8 @@
-package br.com.lucystar.login.entity;
+package br.com.lucystar.login.entity.client;
 
 import java.io.Serializable;
 
+import br.com.lucystar.login.entity.system.SystemAdminParamEntity;
 import br.com.lucystar.login.enums.StatuEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

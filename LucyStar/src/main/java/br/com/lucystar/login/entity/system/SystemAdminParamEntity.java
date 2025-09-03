@@ -1,4 +1,4 @@
-package br.com.lucystar.login.entity;
+package br.com.lucystar.login.entity.system;
 
 import java.io.Serializable;
 import java.util.Date;

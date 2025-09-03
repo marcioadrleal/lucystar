@@ -1,4 +1,4 @@
-package br.com.lucystar.login.controller;
+package br.com.lucystar.login.controller.client;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.lucystar.login.dto.ClientAddDTO;
-import br.com.lucystar.login.dto.ClientDto;
+import br.com.lucystar.login.dto.client.ClientAddDTO;
+import br.com.lucystar.login.dto.client.ClientDto;
 import br.com.lucystar.login.exceptions.DeleteException;
 import br.com.lucystar.login.exceptions.NotFoundException;
-import br.com.lucystar.login.service.ClientService;
+import br.com.lucystar.login.service.client.ClientService;
 import br.com.lucystar.login.utils.MessagesLocal;
 import jakarta.validation.Valid;
 

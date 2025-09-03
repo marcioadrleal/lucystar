@@ -1,4 +1,4 @@
-package br.com.lucystar.login.dto;
+package br.com.lucystar.login.dto.client;
 
 import br.com.lucystar.login.enums.StatuEnum;
 
