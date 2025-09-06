@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lucystar.login.controller.GeneralController;
 import br.com.lucystar.login.dto.system.InitializeSystemDTO;
 import br.com.lucystar.login.exceptions.ResetSystemException;
 import br.com.lucystar.login.service.system.InitializeSystemService;
@@ -17,7 +18,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @RestController
-@RequestMapping("/lucystar/api/system")
+@RequestMapping(GeneralController.SYSTEM_REQUEST_MAPPING)
 @Validated
 public class SystemController {
 	

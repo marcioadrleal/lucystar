@@ -1,4 +1,4 @@
-package br.com.lucystar.login.entity.client;
+package br.com.lucystar.login.entity.roles;
 
 import java.io.Serializable;
 
@@ -15,26 +15,26 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "client")
-public class ClientEntity implements Serializable {
+@Table(name = "roles")
+public class RolesEntity implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1624760221921775836L;
+	private static final long serialVersionUID = -9204663375843428677L;
 
 	@Id
 	@Column(name = "id", length = 40, nullable = false)
 	private String id;
 
-	@Column(name = "client_code", length = 20, nullable = false)
-	private String codeClient;
+	@Column(name = "role_code", length = 15, nullable = false)
+	private String roleCode;
 
-	@Column(name = "client_name", length = 80, nullable = false)
-	private String nameClient;
+	@Column(name = "role_name", length = 40, nullable = false)
+	private String roleName;
 
-	@Column(name = "status", length = 10, nullable = false)
 	@Enumerated(EnumType.STRING)
+	@Column(name = "status", length = 10, nullable = false)
 	private StatuEnum status;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -49,20 +49,12 @@ public class ClientEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getCodeClient() {
-		return codeClient;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setCodeClient(String codeClient) {
-		this.codeClient = codeClient;
-	}
-
-	public String getNameClient() {
-		return nameClient;
-	}
-
-	public void setNameClient(String nameClient) {
-		this.nameClient = nameClient;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	public StatuEnum getStatus() {
@@ -79,6 +71,14 @@ public class ClientEntity implements Serializable {
 
 	public void setSystemAdmin(SystemAdminParamEntity systemAdmin) {
 		this.systemAdmin = systemAdmin;
+	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
 	}
 
 }

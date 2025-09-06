@@ -16,6 +16,7 @@ import br.com.lucystar.login.exceptions.NotFoundException;
 import br.com.lucystar.login.repository.client.ClientRepository;
 import br.com.lucystar.login.service.system.InitializeSystemService;
 import br.com.lucystar.login.utils.MessagesException;
+import br.com.lucystar.login.utils.MessagesLocal;
 import br.com.lucystar.login.utils.Util;
 import jakarta.transaction.Transactional;
 
@@ -80,6 +81,18 @@ public class ClientService {
 		} catch (Exception e) {
 			throw new DeleteException(MessagesException.deleteException);
 		}
+	}
+
+	public ClientDto findByCodeClient(String code, String SecretlocalKey) throws NotFoundException {
+		ClientEntity entity = clientRepository.findByCodeClient(code, SecretlocalKey)
+				.orElseThrow(() -> new NotFoundException(MessagesLocal.CLIENT_NOT_FOUND));
+		return new ClientDto(entity.getId(), entity.getCodeClient(), entity.getNameClient(), entity.getStatus(),
+				entity.getSystemAdmin().getLocalSecretKey());
+	}
+	
+	
+	public ClientEntity findByIdEntity(String id) throws NotFoundException {
+	  return clientRepository.findById(id).orElseThrow(() -> new NotFoundException(MessagesLocal.CLIENT_NOT_FOUND));	
 	}
 
 }
