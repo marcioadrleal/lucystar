@@ -12,7 +12,6 @@ public record GroupAddDto(
 		@NotBlank(message = MessagesLocal.VALID_NAME_GROUP)
 		String groupName,
 		
-		@NotBlank(message = MessagesLocal.VALID_STATUS_GROUP)
 		StatuEnum status,
 		
 		@NotBlank(message = MessagesLocal.VALID_LOCAL_KEY_GROUP)

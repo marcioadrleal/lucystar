@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.lucystar.login.dto.roles.GroupAddDto;
 import br.com.lucystar.login.dto.roles.GroupDto;
-import br.com.lucystar.login.dto.roles.RolesAddDto;
 import br.com.lucystar.login.dto.roles.RolesDto;
 import br.com.lucystar.login.entity.roles.GroupsEntity;
 import br.com.lucystar.login.entity.roles.RolesEntity;

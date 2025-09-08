@@ -1,7 +1,6 @@
 package br.com.lucystar.login.service.roles;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import br.com.lucystar.login.entity.roles.RolesEntity;
 import br.com.lucystar.login.enums.StatuEnum;
 import br.com.lucystar.login.exceptions.HasBeenRegisteredException;
 import br.com.lucystar.login.exceptions.NotFoundException;
+import br.com.lucystar.login.exceptions.RolesGroupException;
 import br.com.lucystar.login.repository.roles.GroupRepository;
 import br.com.lucystar.login.repository.roles.GroupRolesRepository;
 import br.com.lucystar.login.repository.roles.RolesRepository;
@@ -34,7 +34,7 @@ public class GroupRolesService {
 
 	@Transactional
 	public void addRolesGroup(String idGroup, List<String> idRole)
-			throws NotFoundException, HasBeenRegisteredException {
+			throws NotFoundException, HasBeenRegisteredException , RolesGroupException {
 		GroupsEntity group = groupRepository.findById(idGroup)
 				.orElseThrow(() -> new NotFoundException(MessagesLocal.GROUP_NOT_FOUND));
 		List<RolesEntity> role = rolesRepository.findAllById(idRole);
@@ -49,8 +49,18 @@ public class GroupRolesService {
 		if ((verify != null) && (verify.size() > 0)) {
 			throw new HasBeenRegisteredException(MessagesLocal.ROLE_REGISTERED);
 		}
+		
+		
+		
 		List<GroupRolesEntity> lst = new ArrayList<>();
-		role.forEach(rol -> lst.add(new GroupRolesEntity(Util.generateId(), group, rol, StatuEnum.ACTIVE)));
+		role.forEach(rol -> { 
+		    if ( rol.getSystemAdmin().getId().equals(group.getClientEntity().getSystemAdmin()) ) {
+		      throw new RolesGroupException("It Roles must be from the same admin's group");   	
+		    }
+		    
+		    lst.add(new GroupRolesEntity(
+				 Util.generateId(), group, rol, StatuEnum.ACTIVE));
+		});
 		groupRolesRepository.saveAll(lst);
 	}
 
