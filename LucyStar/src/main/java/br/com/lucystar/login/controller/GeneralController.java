@@ -14,7 +14,7 @@ public abstract class GeneralController<T,U,Y> {
 	public static final String ROLE_REQUEST_MAPPING = "/lucystar/api/role";
 	public static final String GROUP_REQUEST_MAPPING = "/lucystar/api/group";
 	public static final String GROUP_ROLES_REQUEST_MAPPING = "/lucystar/api/rolegroup";
-	
+	public static final String GROUP_USERS_REQUEST_MAPPING = "/lucystar/api/user";
 	
 	public static final String ADD = "/add";
 	
@@ -31,6 +31,8 @@ public abstract class GeneralController<T,U,Y> {
 	public static final String FIND_BY_ID = "/id/{id}";
 	
 	public static final String FIND_BY_CODE = "/{code}/{key}";
+	
+	public static final String LOGIN = "/login";
 	
 	public abstract ResponseEntity<T> add( U dto ) throws NotFoundException;
 	

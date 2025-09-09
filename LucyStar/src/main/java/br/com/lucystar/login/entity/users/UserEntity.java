@@ -1,21 +1,28 @@
 package br.com.lucystar.login.entity.users;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import br.com.lucystar.login.entity.roles.GroupsEntity;
 import br.com.lucystar.login.enums.StatuEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "user_login")
+public class UserEntity implements Serializable {
 
 	public String getId() {
 		return id;
@@ -76,10 +83,10 @@ public class User implements Serializable {
 	private String email;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "status", length = 80, nullable = false)
+	@Column(name = "status", length = 10, nullable = false)
 	private StatuEnum status;
 
-	@Column(name = "password", length = 20, nullable = false)
+	@Column(name = "password", length = 100, nullable = false)
 	private String password;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -93,6 +100,10 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "deleted", nullable = true)
 	private Date deletedAt;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+	private Set<GroupsEntity> groups = new HashSet<>();
 
 	public StatuEnum getStatus() {
 		return status;
@@ -124,6 +135,14 @@ public class User implements Serializable {
 
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
+	}
+
+	public Set<GroupsEntity> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<GroupsEntity> groups) {
+		this.groups = groups;
 	}
 
 }

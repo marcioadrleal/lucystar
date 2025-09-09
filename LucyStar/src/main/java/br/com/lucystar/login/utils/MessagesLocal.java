@@ -53,4 +53,15 @@ public class MessagesLocal {
 	
 	public static final String ROLE_REGISTERED      = "Role has already been in this group.";
 	
+	
+	/*
+	 * Users
+	 */
+	
+	public static final String VALID_NAME_USER      = "User's name is mandatory";
+	public static final String VALID_USER_NAME      = "Login is mandatory";
+	public static final String VALID_PASSWORD       = "Password is mandatory";
+	public static final String VALID_USER_EMAIL     = "Email is mandatory";
+	public static final String VALID_USER_GROUP     = "Group from User is mandatory.";
+	public static final String USER_NOT_FOUND       = "User not found.";
 }
