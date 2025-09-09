@@ -1,0 +1,47 @@
+package br.com.lucystar.login.security.service;
+
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+import org.springframework.stereotype.Service;
+
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+
+import br.com.lucystar.login.dto.login.TokenDto;
+import br.com.lucystar.login.entity.roles.RolesEntity;
+import br.com.lucystar.login.security.details.UserDetail;
+
+@Service
+public class JwtTokenService {
+
+	private static final String SECRET_KEY = "4Z^XrroxR@dWxqf$mTTKwW$!@#qGr4P78fsrFRAS"; // Secret key
+
+	private static final String ISSUER = "lucy-star";
+
+	public TokenDto generateToken(UserDetail user) {
+
+		Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+		String[] roles = user.getUser().getGroups().stream().flatMap(group -> group.getRoles().stream())
+				.map(RolesEntity::getRoleCode).distinct().toArray(String[]::new);
+
+		String token = JWT.create().withIssuer(ISSUER) // Define o emissor do token
+				.withIssuedAt(creationDate()) // Define a data de emissão do token
+				.withExpiresAt(expirationDate()) // Define a data de expiração do token
+				.withClaim("name", user.getUser().getName())
+				.withSubject(user.getUsername()).withArrayClaim("role", roles).sign(algorithm);
+
+		return new TokenDto(token);
+
+	}
+
+	private Instant creationDate() {
+		return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toInstant();
+	}
+
+	private Instant expirationDate() {
+		return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).plusHours(1).toInstant();
+	}
+
+}

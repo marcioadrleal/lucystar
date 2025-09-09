@@ -1,4 +1,4 @@
-package br.com.lucystar.login.filter;
+package br.com.lucystar.login.security.filter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.lucystar.login.config.SecurityConfiguration;
+import br.com.lucystar.login.security.config.SecurityConfiguration;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

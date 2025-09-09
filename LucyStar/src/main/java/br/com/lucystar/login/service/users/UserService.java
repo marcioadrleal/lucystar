@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.lucystar.login.config.SecurityConfiguration;
 import br.com.lucystar.login.dto.roles.GroupDto;
 import br.com.lucystar.login.dto.user.UserAddDto;
 import br.com.lucystar.login.dto.user.UserDto;
@@ -22,6 +21,7 @@ import br.com.lucystar.login.exceptions.NotFoundException;
 import br.com.lucystar.login.repository.roles.GroupRepository;
 import br.com.lucystar.login.repository.users.GroupUserRepository;
 import br.com.lucystar.login.repository.users.UserRepository;
+import br.com.lucystar.login.security.config.SecurityConfiguration;
 import br.com.lucystar.login.utils.MessagesLocal;
 import br.com.lucystar.login.utils.Util;
 import jakarta.transaction.Transactional;

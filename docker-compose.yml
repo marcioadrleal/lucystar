@@ -21,6 +21,23 @@ services:
     volumes:
       - ../../data/postgres:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
+  lucystar-app:
+    build:
+      context: ./LucyStar
+      dockerfile: Dockerfile   # Usa o Dockerfile que criamos antes
+    container_name: lucystar-app
+    depends_on:
+      dcs-postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_HOST: dcs-postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWD: m256039l
+    ports:
+      - "9001:9001"
+    networks:
+      - lucystar_network    
 networks: 
     lucystar_network:
         driver: bridge

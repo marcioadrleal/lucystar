@@ -15,6 +15,7 @@ public abstract class GeneralController<T,U,Y> {
 	public static final String GROUP_REQUEST_MAPPING = "/lucystar/api/group";
 	public static final String GROUP_ROLES_REQUEST_MAPPING = "/lucystar/api/rolegroup";
 	public static final String GROUP_USERS_REQUEST_MAPPING = "/lucystar/api/user";
+	public static final String INITIAL_PATH = "/lucystar/api";
 	
 	public static final String ADD = "/add";
 	

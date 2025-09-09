@@ -2,9 +2,9 @@ spring:
   application:
     name: LucyStar
   datasource:
-    url: jdbc:postgresql://localhost:5432/lucystarDb
-    username: postgres
-    password: m256039l
+    url: jdbc:postgresql://${DATABASE_HOST:127.0.0.1}:${DATABASE_PORT:5432}/lucystarDb
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWD:m256039l}
     driver-class-name: org.postgresql.Driver  
   jpa:
     hibernate:
