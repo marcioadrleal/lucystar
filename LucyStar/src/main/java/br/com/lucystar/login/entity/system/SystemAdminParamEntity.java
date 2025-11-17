@@ -26,6 +26,9 @@ public class SystemAdminParamEntity implements Serializable {
 
 	@Column(name = "user_name", length = 20, nullable = false)
 	private String userName;
+	
+	@Column(name = "name_system", length = 255, nullable = false)
+	private String nameSystem;
 
 	@Column(name = "secret_key", length = 40, nullable = false)
 	private String secretKey;
@@ -124,4 +127,17 @@ public class SystemAdminParamEntity implements Serializable {
 		this.email = email;
 	}
 
+	public String getNameSystem() {
+		return nameSystem;
+	}
+
+	public void setNameSystem(String nameSystem) {
+		this.nameSystem = nameSystem;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }

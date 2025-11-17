@@ -1,13 +1,11 @@
 package br.com.lucystar.login.security.details;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.lucystar.login.entity.roles.RolesEntity;
 import br.com.lucystar.login.entity.users.UserEntity;
 import br.com.lucystar.login.exceptions.NotFoundException;
 import br.com.lucystar.login.repository.users.UserRepository;

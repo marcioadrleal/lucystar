@@ -1,3 +1,4 @@
+
 package br.com.lucystar.login.service.users;
 
 import java.util.ArrayList;
@@ -45,6 +46,10 @@ public class UserService {
 		UserEntity user = userRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException(MessagesLocal.USER_NOT_FOUND));
 		return convertDto(user);
+	}
+
+	public UserEntity findByEmail(String email) throws NotFoundException {
+		return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Usuário não encontrado."));
 	}
 
 	@Transactional
@@ -136,7 +141,7 @@ public class UserService {
 					u.setUser(user);
 					u.setStatus(StatuEnum.ACTIVE);
 					u.setId(Util.generateId());
-                    mapUserGroup.put(x.getId(), u);
+					mapUserGroup.put(x.getId(), u);
 				}
 			}
 

@@ -1,0 +1,30 @@
+input[type="email"],
+input[type="text"],
+input[type="date"],
+input[type="password"] {
+  padding: 12px;
+  border: 1px solid #014610;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+
+input:focus {
+  border-color: #f33607;
+  box-shadow: 0 0 5px rgba(188, 167, 240, 0.5);
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.options a {
+  color: var(--roxo);
+  text-decoration: none;
+}

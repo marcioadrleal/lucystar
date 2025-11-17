@@ -1,8 +1,14 @@
 package br.com.lucystar.login.security.service;
 
+
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -10,8 +16,13 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.lucystar.login.dto.login.TokenDto;
+import br.com.lucystar.login.dto.login.WebTokenDto;
 import br.com.lucystar.login.entity.roles.RolesEntity;
 import br.com.lucystar.login.security.details.UserDetail;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtTokenService {
@@ -35,6 +46,37 @@ public class JwtTokenService {
 		return new TokenDto(token);
 
 	}
+	
+	public WebTokenDto getSubjectFromToken(String token) {
+        
+		try {
+            // Cria a key HMAC-SHA a partir da string
+            byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+            Key key = Keys.hmacShaKeyFor(keyBytes);
+
+            // Parse e valida assinatura / exp automaticamente
+            Jws<Claims> jws = Jwts.parserBuilder()
+                                  .setSigningKey(key)
+                                  .build()
+                                  .parseClaimsJws(token);
+
+            Claims claims = jws.getBody();
+            String name = claims.get("name", String.class);
+            String sub = claims.getSubject();
+            // papel/roles pode vir como List<?> — convertendo para List<String>
+            Object rolesObj = claims.get("role");
+            List<String> roles = null;
+            if (rolesObj instanceof List) {
+                roles = ((List<?>) rolesObj).stream()
+                        .map(Object::toString)
+                        .collect(Collectors.toList());
+            }
+            return new WebTokenDto(name, sub, roles);
+		}catch (Exception e) {
+			return null;
+		}
+		
+    }
 
 	private Instant creationDate() {
 		return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toInstant();
